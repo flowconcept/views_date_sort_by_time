@@ -1,5 +1,5 @@
 {
-  "name": "views_date_sort_by_time"
+  "name": "views_date_sort_by_time",
   "description": "Views sort plugin for datetime fields, allowing to sort by time ignoring the date part of the DateTime value.",
   "version": "master",
   "type": "drupal-module",
@@ -7,4 +7,3 @@
   "minimum-stability": "dev",
   "require": { }
 }
-
