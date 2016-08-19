@@ -1,0 +1,6 @@
+name: 'Views Date Sort By Time'
+description: 'Sort a view by date field time, ignoring the actual date.'
+type: module
+core: 8.x
+dependencies:
+  - views

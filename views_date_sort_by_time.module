@@ -1,0 +1,31 @@
+<?php
+/**
+ * @file
+ * Provide views data for our custom module_name.
+ */
+
+use Drupal\field\FieldStorageConfigInterface;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
+
+/**
+ * Implements hook_field_views_data_alter).
+ */
+function views_date_sort_by_time_field_views_data_alter(array &$data, FieldStorageConfigInterface $field_storage) {
+  if ($field_storage->getType() == 'datetime') {
+    foreach ($data as $table_name => $table_data) {
+      /* Build a pseudo field with sort only. */
+      // copy original
+      $date_sort_by_time = $data[$table_name][$field_storage->getName() . '_value'];
+
+      $date_sort_by_time['title'] = new TranslatableMarkup(
+        "@label (@name) (Custom: sort by time)",
+        $data[$table_name][$field_storage->getName() . '_value']['title']->getArguments(),
+        $data[$table_name][$field_storage->getName() . '_value']['title']->getOptions());
+      unset($date_sort_by_time['filter']);
+      unset($date_sort_by_time['argument']);
+      $date_sort_by_time['sort']['id'] = 'date_sort_by_time';
+
+      $data[$table_name][$field_storage->getName() . '_value_date_sort_by_time'] = $date_sort_by_time;
+    }
+  }
+}
